@@ -1,5 +1,14 @@
 # Storage
-This is a set of .Net Standard libraries designed to provide access to file (and other) storage in a very generic _storage-agnostic_ way. This makes it available to both .Net Core and .Net Framework projects. Where specific providers cannot use .Net Standard multiple framework versions of libraries will be provided in the packages.
+Storage is a set of .Net Standard libraries designed to provide access to file (and other) storage in a very generic _storage-agnostic_ way. This makes it available to both .Net Core and .Net Framework projects* and on many environments using the exact same code (e.g. Blob storage, Local file systems, Embedded resources and even Email systems _eventually_). 
+
+*Note: Where specific providers cannot use .Net Standard multiple framework versions of libraries will be provided in the packages.
+
+## Typical file operations supported:
+- Copy files
+- Move files
+- Delete files (where allowed)
+- Read files
+- Write files (where allowed)
 
 ## Deployment Via NuGet
 Deployment will be via a set of related NuGet packages, so that you only need to include the packages that you require (i.e.  just include the storage providers you wish to support in a given application).
@@ -43,7 +52,7 @@ Where the provider supports deletion, a simple call to await `storage.DeleteAsyn
 
 ## Initial design includes support for the following Storage environments
 - Local file storage
-- Embedded resource files (read only for obvious reasons)
+- Embedded resource files (readonly for obvious reasons)
 - Azure blob storage
 
 ## Additional storage providers could include
