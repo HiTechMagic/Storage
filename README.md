@@ -1,23 +1,32 @@
 # Storage
-Storage is a set of .Net Standard libraries designed to provide access to file (and other) storage in a very generic _storage-agnostic_ way. This makes it available to both .Net Core and .Net Framework projects* and on many environments using the exact same code (e.g. Blob storage, Local file systems, Embedded resources and even Email systems _eventually_). 
+Storage is a set of .Net Standard libraries designed to provide access to file (and other) storage in a very generic _storage-agnostic_ way. 
+
+Imagine a world where the repetative act of copying, moving, opening files was as simple as one line of code. After decades of writing custom code for file access the idea arose of making a generic system, that could hide all the mechanics of where your files reside, and just use standard file operations for everything (Read, Write, Copy etc) regardless of whether it was stored on a local drive or hosted in the cloud. It also opens up the ability to process multiple source and/or destimation paths in a single command. e.g.
+
+`storage.CopyAsync("Templates:\Masterfile.pdf;LocalFileStore:\someFolder\;SecondStore:\anotherFolder\", "TargetStore:\folder\folder")`
+
+## .Net Standard by default
+Using .Net Standard makes the librares available to both .Net Core and .Net Framework projects* and on most environments using the exact same code (e.g. Blob storage, Local file systems, Embedded resources and even Email systems _eventually_). 
 
 *Note: Where specific providers cannot use .Net Standard multiple framework versions of libraries will be provided in the packages.
 
 ## Typical file operations supported:
 - Copy files
 - Move files
+- Rename files (where allowed)
 - Delete files (where allowed)
 - Read files
 - Write files (where allowed)
+- Get file information (i.e. metadata)
+- Get contents of a folder
 
 ## Deployment Via NuGet
-Deployment will be via a set of related NuGet packages, so that you only need to include the packages that you require (i.e.  just include the storage providers you wish to support in a given application).
+Deployment will be via a set of related NuGet packages, so that you only need to include the packages that you require (i.e. just include the storage providers you wish to support in a given application).
 
 ## File specification
 `{schema}:{relativePath}\{filespec}`
 
-The Schema part of a standard file path name (e.g. drive letter in the old DOS parlence) is used to decide which Storage provider to use. 
-
+The Schema part of a standard file path name (e.g. drive letter in the old DOS parlence) is used to decide which Storage provider to use.
 This means all file access, regardless of actual storage, is via paths like:
 - `TempFiles:\folder\subfolder\somefile.pdf` where `TempFiles` is specific named Storage configuration entry
 - `UploadPath:\folder\subfolder\`* where `UploadPath` is specific named Storage configuration entry
@@ -65,3 +74,5 @@ In order to decide which Storage Provider library to implement against a given c
 - `IStorageProviderFactory`
 - `IMaDataProviderFactory`
 - `IEncryptionProviderFactory`
+
+ As the slowest part of file operations (by orders of magnitude) is the actual file transfer, the overhead of looking up and generating providers on-the-fly, via the Class Factories, is minimal and not considered an issue at this time. 
