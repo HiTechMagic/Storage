@@ -44,15 +44,24 @@ Configuration alone decides which Storage provider to use, for any given Schema 
 `IStorage.ReadAsync(sourcePath)`
 
 ### Copy
-`IStorage.CopyAsync(sourcePaths, destionationPaths)`
+`IStorage.CopyAsync(sourcePaths, destinationPaths)`
 
 - Copy from multiple sources, to multiple sources assuming a simple delimited set of paths. e.g. the following will copy all files from 2 sources to 2 destination paths `await storage.CopyAsync("Temp1:\files\;Temp2:\files\", "Storage1:\files;Storage2:\files\");`
 
 ### Move
-`IStorage.MoveAsync(sourcePaths, destionationPaths)`
+`IStorage.MoveAsync(sourcePaths, destinationPaths)`
 
 - This is implemented by the high-level code as calls to Read, write then delete.
 - Where a provider supports deletion, the source files will be deleted after successful copying.
+
+## Read
+`IStorage.ReadAsync(fileOrFolderPath)`
+
+## Write
+`IStorage.RenameAsync(newFileOrFolderPath, stream [, metadata])`
+
+### Rename
+`IStorage.RenameAsync(fileOrFolderPath, newFileOrFolderName)`
 
 ### Delete
 `IStorage.DeleteAsync(fileOrFolderPaths)`
