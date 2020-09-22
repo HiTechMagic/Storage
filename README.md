@@ -81,7 +81,7 @@ Where the provider supports deletion, a simple call to await `storage.DeleteAsyn
 ## Factory Pattern Decides Storage provider
 In order to decide which Storage Provider library to implement against a given configuration Storge Type, it was felt a simple Factory pattern would be the simplest to implement while allowing granular inclusion of Storage libraries. A simple Factory class is created for each of:
 - `IStorageProviderFactory`
-- `IMaDataProviderFactory`
+- `IMetaDataProviderFactory`
 - `IEncryptionProviderFactory`
 
  As the slowest part of file operations (by orders of magnitude) is the actual file transfer, the overhead of looking up and generating providers on-the-fly, via the Class Factories, is minimal and not considered an issue at this time. 
