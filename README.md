@@ -36,6 +36,9 @@ This means all file access, regardless of actual storage, is via paths like:
 ## Streams
 To allow generic file access, Storage uses the lowest common denominator for any Storage Provider, which is the basic `Stream`. More complex operations, like `Copy`, are build on top of the basic Stream-driven methods.
 
+## Metadata
+Metadata is additional information associated with a given file. This can include useful information like the original filename, the filename for downloading, the file size or the file Metadat type. In storage providers like Azure Blob Storage this information can be stored against the file Blob directly as a set if key-value pairs. To support Metadata on all Storage providers, Storage allows for having  metadata in alternate storage (e.g. database entries or even parallel files with a JSON extension).
+
 ## Configuration Driven
 Configuration alone decides which Storage provider to use, for any given Schema name in a file path, so you can redirect you storage to a new location as/when you require without a code change.
 
@@ -81,7 +84,7 @@ Where the provider supports deletion, a simple call to await `storage.DeleteAsyn
 ## Factory Pattern Decides Storage provider
 In order to decide which Storage Provider library to implement against a given configuration Storge Type, it was felt a simple Factory pattern would be the simplest to implement while allowing granular inclusion of Storage libraries. A simple Factory class is created for each of:
 - `IStorageProviderFactory`
-- `IMetaDataProviderFactory`
+- `IMetadataProviderFactory`
 - `IEncryptionProviderFactory`
 
  As the slowest part of file operations (by orders of magnitude) is the actual file transfer, the overhead of looking up and generating providers on-the-fly, via the Class Factories, is minimal and not considered an issue at this time. 
