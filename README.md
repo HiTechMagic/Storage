@@ -3,7 +3,7 @@ Storage is a set of .Net Standard libraries designed to provide access to file (
 
 Imagine a world where the repetative act of copying, moving, opening files was as simple as one line of code. After decades of writing custom code for file access the idea arose of making a generic system, that could hide all the mechanics of where your files reside, and just use standard file operations for everything (Read, Write, Copy etc) regardless of whether it was stored on a local drive or hosted in the cloud. It also opens up the ability to process multiple source and/or destination paths in a single command. e.g.
 
-`storage.CopyAsync("Templates:\Masterfile.pdf;LocalFileStore:\someFolder\;SecondStore:\anotherFolder\", "TargetStore:\folder\folder")`
+`storage.CopyAsync("Templates:\Masterfile.pdf;LocalFileStore:\someFolder\;SecondStore:\anotherFolder\", "TargetStore:\folder\folder\")`
 
 ## .Net Standard by default
 Using .Net Standard makes the librares available to both .Net Core and .Net Framework projects* and on most environments using the exact same code (e.g. Blob storage, Local file systems, Embedded resources and even Email systems _eventually_). 
