@@ -1,7 +1,7 @@
 # Storage
 Storage is a set of .Net Standard libraries designed to provide access to file (and other) storage in a very generic _storage-agnostic_ way. 
 
-Imagine a world where the repetative act of copying, moving, deleting, renaming, reading and writing files was as simple as one line of code, regardless of where/how the file was stored. After decades of writing custom code for file access the idea became obvious to make a generic system that could hide all the mechanics of where your files reside, and just use standard file operations for everything (Read, Write, Copy etc) regardless of whether it was stored on a local drive or hosted in the cloud. It also opens up the ability to process multiple source and/or destination paths in a single command. e.g.
+Imagine a world where the repetative acts, of copying, moving, deleting, renaming, reading and writing files, were as simple as one line of code, regardless of where/how the file was stored. After decades of writing custom code for file access the idea became obvious to make a generic system that could hide all the mechanics of where your files reside, and just use standard file operations for everything (Read, Write, Copy etc) regardless of whether it was stored on a local drive or hosted in the cloud. It also opens up the ability to process multiple source and/or destination paths in a single command. e.g.
 
 `storage.CopyAsync("Templates:\Masterfile.pdf;LocalFileStore:\someFolder\;SecondStore:\anotherFolder\", "TargetStore:\folder\folder\")`
 
